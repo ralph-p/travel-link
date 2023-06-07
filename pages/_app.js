@@ -5,7 +5,11 @@ export default function App({ Component, pageProps }) {
   return <div>
 
     <NavBar />
+    <main
+      className={`flex min-h-screen flex-col items-center justify-between p-24 w-full`}
+    >
 
-    <Component {...pageProps} />
+      <Component {...pageProps} />
+    </main>
   </div>
 }

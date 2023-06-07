@@ -15,30 +15,108 @@ import {
 const AirEconomy = ({ setForm, form, step, nextStep }) => {
   switch (step) {
     case 1:
-
       return (
-        <form className="flex max-w-md flex-col gap-4">
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
           <div>
             <div className="mb-2 block">
               <Label
-                htmlFor="economyValue"
-                value="Economy"
+                htmlFor="departAirport"
+                value="Departing Airport"
+              />
+              <TextInput
+                id="departAirport"
+                placeholder="YYZ"
+                required
+                type="text"
+                value={form?.depart}
+                onChange={(event) => setForm('depart', event.target.value)}
               />
             </div>
-            <TextInput
-              id="economyValue1"
-              placeholder="Some value"
-              required
-              type="text"
-              value={form?.value}
-              onChange={(event) => setForm('value', event.target.value)}
-            />
+            <div className="mb-2 block">
+              <Label
+                htmlFor="arriveAirport"
+                value="Arriving Airport"
+              />
+              <TextInput
+                id="arriveAirport"
+                placeholder="AMS"
+                required
+                type="text"
+                value={form?.arrive}
+                onChange={(event) => setForm('arrive', event.target.value)}
+              />
+            </div>
           </div>
           <Button onClick={nextStep}>Next Step</Button>
         </form>
       );
     default:
-      return(<Button >Please Preview before submitting</Button>)
+      return (<Button >Please Preview before submitting</Button>)
+  }
+
+}
+const PremiumEconomy = ({ setForm, form, step, nextStep }) => {
+  switch (step) {
+    case 1:
+      return (
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="departAirport"
+                value="Departing Airport"
+              />
+              <TextInput
+                id="departAirport"
+                placeholder="YYZ"
+                required
+                type="text"
+                value={form?.depart}
+                onChange={(event) => setForm('depart', event.target.value)}
+              />
+            </div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="arriveAirport"
+                value="Arriving Airport"
+              />
+              <TextInput
+                id="arriveAirport"
+                placeholder="AMS"
+                required
+                type="text"
+                value={form?.arrive}
+                onChange={(event) => setForm('arrive', event.target.value)}
+              />
+            </div>
+          </div>
+          <Button type='submit'>Next Step</Button>
+        </form>
+      );
+    case 2:
+      return (
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="firstOption"
+                value="Premium - Number Checkin"
+              />
+            </div>
+            <TextInput
+              id="firstOption"
+              placeholder="Enter Number of checked bags"
+              required
+              type="number"
+              value={form?.checkedBags}
+              onChange={(event) => setForm('checkedBags', event.target.value)}
+            />
+          </div>
+          <Button type='submit'>Next Step</Button>
+        </form>
+      )
+    default:
+      return (<Button >Please Preview before submitting</Button>)
   }
 
 }
@@ -47,21 +125,33 @@ const BusinessClass = ({ setForm, form, step, nextStep }) => {
     case 1:
 
       return (
-        <form className="flex max-w-md flex-col gap-4">
-          <div>
-            <div className="mb-2 block">
-              <Label
-                htmlFor="economyValue"
-                value="Economy"
-              />
-            </div>
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="departAirport"
+              value="Departing Airport"
+            />
             <TextInput
-              id="economyValue1"
-              placeholder="Some value"
+              id="departAirport"
+              placeholder="YYZ"
               required
               type="text"
-              value={form?.value}
-              onChange={(event) => setForm('value', event.target.value)}
+              value={form?.depart}
+              onChange={(event) => setForm('depart', event.target.value)}
+            />
+          </div>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="arriveAirport"
+              value="Arriving Airport"
+            />
+            <TextInput
+              id="arriveAirport"
+              placeholder="AMS"
+              required
+              type="text"
+              value={form?.arrive}
+              onChange={(event) => setForm('arrive', event.target.value)}
             />
           </div>
           <Button onClick={nextStep}>Next Step</Button>
@@ -69,21 +159,21 @@ const BusinessClass = ({ setForm, form, step, nextStep }) => {
       );
     case 2:
       return (
-        <form className="flex max-w-md flex-col gap-4">
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
           <div>
             <div className="mb-2 block">
               <Label
-                htmlFor="economyOption"
-                value="Economy Class - Option"
+                htmlFor="firstOption"
+                value="Business - Number Checkin"
               />
             </div>
             <TextInput
-              id="economyOption"
-              placeholder="Enter option"
+              id="firstOption"
+              placeholder="Enter Number of checked bags"
               required
-              type="text"
-              value={form?.option}
-              onChange={(event) => setForm('option', event.target.value)}
+              type="number"
+              value={form?.checkedBags}
+              onChange={(event) => setForm('checkedBags', event.target.value)}
             />
           </div>
           <Button onClick={nextStep}>Next Step</Button>
@@ -91,16 +181,16 @@ const BusinessClass = ({ setForm, form, step, nextStep }) => {
       )
     case 3:
       return (
-        <form className="flex max-w-md flex-col gap-4">
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
           <div>
             <div className="mb-2 block">
               <Label
                 htmlFor="economyAdditionalOption"
-                value="Economy Class - Additional Input"
+                value="Business Class - Additional Info"
               />
             </div>
-            <TextInput
-              id="economyAdditionalOption"
+            <Textarea
+              id="businessAdditionalOption"
               placeholder="Enter any more info"
               required
               type="text"
@@ -112,55 +202,128 @@ const BusinessClass = ({ setForm, form, step, nextStep }) => {
         </form>
       )
     default:
-      return(<Button >Please Preview before submitting</Button>)
+      return (<Button >Please Preview before submitting</Button>)
+  }
+
+}
+const FirstClass = ({ setForm, form, step, nextStep }) => {
+  switch (step) {
+    case 1:
+      return (
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="departAirport"
+                value="Departing Airport"
+              />
+              <TextInput
+                id="departAirport"
+                placeholder="YYZ"
+                required
+                type="text"
+                value={form?.depart}
+                onChange={(event) => setForm('depart', event.target.value)}
+              />
+            </div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="arriveAirport"
+                value="Arriving Airport"
+              />
+              <TextInput
+                id="arriveAirport"
+                placeholder="AMS"
+                required
+                type="text"
+                value={form?.arrive}
+                onChange={(event) => setForm('arrive', event.target.value)}
+              />
+            </div>
+            <div className="flex items-center gap-2 mt-2">
+              <Checkbox id="priority" value={form?.prioritySeating} onChange={() => setForm('prioritySeating', !form?.prioritySeating)} />
+              <Label htmlFor="priority">
+                Priority Seating
+              </Label>
+            </div>
+          </div>
+          <Button onClick={nextStep}>Next Step</Button>
+        </form>
+      );
+    case 2:
+      return (
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="firstOption"
+                value="First Class - Number Checkin"
+              />
+            </div>
+            <TextInput
+              id="firstOption"
+              placeholder="Enter Number of checked bags"
+              required
+              type="number"
+              value={form?.checkedBags}
+              onChange={(event) => setForm('checkedBags', event.target.value)}
+            />
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <Checkbox id="priority" value={form?.extraBag} onChange={() => setForm('extraBag', !form?.extraBag)} />
+            <Label htmlFor="priority">
+              Add Extra Carry On
+            </Label>
+          </div>
+          <Button onClick={nextStep}>Next Step</Button>
+        </form>
+      )
+    case 3:
+      return (
+        <form className="flex max-w-md flex-col gap-4" onSubmit={nextStep}>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="economyAdditionalOption"
+                value="First Class - Additional Info"
+              />
+            </div>
+            <Textarea
+              id="economyAdditionalOption"
+              placeholder="Enter any more info"
+              required
+              value={form?.additional}
+              onChange={(event) => setForm('additional', event.target.value)}
+              rows={10}
+            />
+          </div>
+          <Button onClick={nextStep}>Next Step</Button>
+        </form>
+      )
+    default:
+      return (<Button >Please Preview before submitting</Button>)
   }
 
 }
 
 export const InputForm = ({ formClass, step, nextStep, currentForm }) => {
-  const [form, setForm] = useState({...currentForm})
+  const [form, setForm] = useState({ ...currentForm })
+  const formNextStep = (event) => {
+    event.preventDefault()
+    nextStep(form)
+  }
   switch (formClass) {
     case airTransportOptions[0].value:
-      return (<AirEconomy setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={() => nextStep(form)} />)
+      return (<AirEconomy setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={formNextStep} />)
+    case airTransportOptions[1].value:
+      return (<PremiumEconomy setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={formNextStep} />)
     case airTransportOptions[2].value:
-      return (<BusinessClass setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={() => nextStep(form)} />)
+      return (<BusinessClass setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={formNextStep} />)
+    case airTransportOptions[3].value:
+      return (<FirstClass setForm={(key, value) => setForm((form) => ({ ...form, [key]: value }))} form={form} step={step} nextStep={formNextStep} />)
 
     default:
-      break;
+      return <Button >Please Preview before submitting</Button>
   }
-  return (
-    <form>
-      <div class="grid gap-6 mb-6 md:grid-cols-2">
-        <div>
-          <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-          <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required value={form?.value} onChange={(event) => setForm('value', event.target.value)} />
-        </div>
-        <div>
-          <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
-          <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required />
-        </div>
-        <div>
-          <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-          <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Flowbite" required />
-        </div>
-        <div>
-          <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-          <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
-        </div>
-        <div>
-          <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
-          <input type="url" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="flowbite.com" required />
-        </div>
-        <div>
-          <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unique visitors (per month)</label>
-          <input type="number" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
-        </div>
-      </div>
-      <div class="mb-6">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required />
-      </div>
 
-    </form>
-  )
 }
