@@ -27,7 +27,7 @@ export default function Home() {
             {
               TABS.map((tab) => (
                 <li key={`tab-${tab}`} className="mr-2" role="presentation">
-                  <button onClick={() => setSelectedTab(tab)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 ${tab === selectedTab && `text-blue-900 border-blue-800 font-bold`}`} id={`${tab}-tab`} data-tabs-target={`#${tab}`} type="button" role="tab" aria-controls={tab} aria-selected="true">{tab}</button>
+                  <button onClick={() => setSelectedTab(tab)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-black-300 dark:hover:border-blue-300 ${tab === selectedTab && `text-blue-900 border-blue-800 font-bold`}`} id={`${tab}-tab`} data-tabs-target={`#${tab}`} type="button" role="tab" aria-controls={tab} aria-selected="true">{tab}</button>
                 </li>
               ))
             }
