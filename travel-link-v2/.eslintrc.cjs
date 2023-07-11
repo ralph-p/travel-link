@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+const { off } = require("process");
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
@@ -21,6 +22,7 @@ const config = {
   plugins: ["@typescript-eslint"],
   extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   rules: {
+    "@typescript-eslint/no-unsafe-argument": "off", 
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {

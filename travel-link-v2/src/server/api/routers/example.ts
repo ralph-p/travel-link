@@ -4,7 +4,7 @@ import {
   publicProcedure,
   protectedProcedure,
 } from "~/server/api/trpc";
-import { getSoapResponse, numberToWordsXml, getNumberToWordsBody } from "~/server/helper/soap";
+import { getSoapResponse, numberToWordsXml, getNumberToWordsBody, SoapNumResponse } from "~/server/helper/soap";
 
 export const exampleRouter = createTRPCRouter({
   numToWords: publicProcedure
@@ -14,7 +14,7 @@ export const exampleRouter = createTRPCRouter({
 
       const xml = numberToWordsXml(input.number)
       const body = await getSoapResponse(url, xml)
-      const response = getNumberToWordsBody(body)
+      const response = getNumberToWordsBody(body as SoapNumResponse)
       
       return {
         number: response,

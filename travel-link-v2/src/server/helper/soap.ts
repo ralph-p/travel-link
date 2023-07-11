@@ -19,12 +19,23 @@ export const numberToWordsXml = (number: number) => {
 export const getSoapResponse = async (url: string, xml: string) => {
     let body = {}
     const { response } = await easySoapRequest({ url: url, headers: sampleHeaders, xml: xml });
-    parseString(response.body,(err: Error | null, result: any) => body = result)
+    parseString(response.body as string,(err: Error | null, result: any) => body = result as SoapNumResponse)
     return body
 }
-
-export const getNumberToWordsBody = (body: any) => {
-    let result = body['soap:Envelope']['soap:Body'][0]['m:NumberToWordsResponse'][0]['m:NumberToWordsResult'][0]
-    return result
-
-}
+export interface SoapNumResponse {
+      'soap:Envelope': {
+        'soap:Body': {
+          'm:NumberToWordsResponse': {
+            'm:NumberToWordsResult': string[];
+          }[];
+        }[];
+      };
+    }
+    export const getNumberToWordsBody = (body: SoapNumResponse): string | undefined => {
+        const soapEnvelope = body['soap:Envelope'];
+        const soapBody = soapEnvelope?.['soap:Body']?.[0];
+        const numberToWordResponse = soapBody?.['m:NumberToWordsResponse']?.[0];
+        const result = numberToWordResponse?.['m:NumberToWordsResult']?.[0];
+      
+        return result || '';
+      };
